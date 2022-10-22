@@ -1,6 +1,8 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EntryWidget extends StatefulWidget {
@@ -12,6 +14,21 @@ class EntryWidget extends StatefulWidget {
 
 class _EntryWidgetState extends State<EntryWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      GoRouter.of(context).prepareAuthEvent();
+      final user = await signInAnonymously(context);
+      if (user == null) {
+        return;
+      }
+
+      context.goNamedAuth('Home', mounted);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
