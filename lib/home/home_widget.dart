@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,16 @@ class _HomeWidgetState extends State<HomeWidget> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            children: [
+              Text(
+                'UID',
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
+              Text(
+                currentUserUid,
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
+            ],
           ),
         ),
       ),
